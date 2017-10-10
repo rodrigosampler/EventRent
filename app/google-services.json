@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "333392386912",
+    "firebase_url": "https://eventrent-bb3e8.firebaseio.com",
+    "project_id": "eventrent-bb3e8",
+    "storage_bucket": "eventrent-bb3e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333392386912:android:b20bb9eff9e57387",
+        "android_client_info": {
+          "package_name": "br.com.rodrigosampler.eventrent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333392386912-379s2l6m2tvmr3jhjra6v32fi1m1n854.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.rodrigosampler.eventrent",
+            "certificate_hash": "073b9e3a0067d91b4aac0b791a4e7a73c3ddbef5"
+          }
+        },
+        {
+          "client_id": "333392386912-7tmc971b8ritdj9is4psamf69mopp0g5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOi_qhgQ2xCWAKo1y8vfPh_wDSlPTgKoc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333392386912-7tmc971b8ritdj9is4psamf69mopp0g5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
