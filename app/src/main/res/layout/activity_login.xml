@@ -32,11 +32,13 @@
         android:text="logar"/>
 
     <TextView
+        android:id="@+id/tvAbreCadastro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:text="Não tem cadastro? Clique Aqui"
-        android:textSize="15sp"/>
+        android:textSize="15sp"
+        />
 
 </LinearLayout>

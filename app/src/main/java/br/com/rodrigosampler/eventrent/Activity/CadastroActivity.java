@@ -1,5 +1,7 @@
 package br.com.rodrigosampler.eventrent.Activity;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,10 +10,19 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.rodrigosampler.eventrent.DAO.ConfiguracaoFirebase;
 import br.com.rodrigosampler.eventrent.Entidades.Usuarios;
+import br.com.rodrigosampler.eventrent.Helper.Base64Custom;
+import br.com.rodrigosampler.eventrent.Helper.Preferencias;
 import br.com.rodrigosampler.eventrent.R;
 
 import static android.R.attr.onClick;
@@ -28,7 +39,7 @@ public class CadastroActivity extends AppCompatActivity {
     private RadioButton rbFemenino;
     private Button btnGravar;
     private Usuarios usuarios;
-    private FirebaseAuth autenticação
+    private FirebaseAuth autenticação;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +54,7 @@ public class CadastroActivity extends AppCompatActivity {
         editCadAniversario = (EditText) findViewById(R.id.editCadAniversario);
         rbFemenino = (RadioButton) findViewById(R.id.rbFemenino);
         rbMasculino = (RadioButton) findViewById(R.id.rbMasculino);
+        btnGravar = (Button) findViewById(R.id.btnGravar);
 
         btnGravar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +72,7 @@ public class CadastroActivity extends AppCompatActivity {
                     } else {
                         usuarios.setSexo("Masculino");
                     }
-
+                cadastrarUsuario();
 
                 } else {
                     Toast.makeText(CadastroActivity.this, "As senhas não são correspondentes", Toast.LENGTH_SHORT).show();
@@ -68,10 +80,49 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
     }
-    private void cadastroUsuario(){
+    private void cadastrarUsuario(){
         autenticação = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticação.createUserWithEmailAndPassword(
-                usuarios
-        );
+                usuarios.getEmail(),
+                usuarios.getSenha()
+        ).addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(CadastroActivity.this, "Usuário cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+
+                    String identificadorUsuario = Base64Custom.codificadorBase64(usuarios.getEmail());
+                    FirebaseUser usuarioFirebase = task.getResult().getUser();
+                    usuarios.setId(identificadorUsuario);
+                    usuarios.salvar();
+
+                    Preferencias preferencias = new Preferencias(CadastroActivity.this);
+                    preferencias.salvarUsuarioPreferencias(identificadorUsuario, usuarios.getNome());
+
+                    abrirLoginUsuario();
+                }else {
+                    String erroExcecao = "";
+
+                    try {
+                        throw  task.getException();
+                    }catch (FirebaseAuthWeakPasswordException e){
+                        erroExcecao = "Digite uma senha mais forte, contendo no mínimo 8 caracteres de letras e números";
+                    }catch (FirebaseAuthInvalidCredentialsException e){
+                        erroExcecao = "O e-mail digitado é invalido, digie um novo e-mail";
+                    }catch (FirebaseAuthUserCollisionException e){
+                        erroExcecao = "Esse e-mail ja esta cadastrado no sistema";
+                    }catch (Exception e){
+                        erroExcecao = "Erro ao efetuar cadastro n o sistema";
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(CadastroActivity.this, "Erro: " +erroExcecao, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+    public void abrirLoginUsuario(){
+        Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
+        startActivity(intent);
+
     }
 }

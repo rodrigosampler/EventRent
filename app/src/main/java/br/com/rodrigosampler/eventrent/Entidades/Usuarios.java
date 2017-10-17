@@ -1,5 +1,13 @@
 package br.com.rodrigosampler.eventrent.Entidades;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import br.com.rodrigosampler.eventrent.DAO.ConfiguracaoFirebase;
+
 /**
  * Created by rodrigo on 05/10/17.
  */
@@ -14,6 +22,27 @@ public class Usuarios {
     private String aniversario;
     private String sexo;
 
+    public Usuarios(){
+    }
+    public void salvar(){
+        DatabaseReference referenciaFirebase = ConfiguracaoFirebase.getFirebase();
+        referenciaFirebase.child("Usuario").child(String.valueOf(getId())).setValue(this);
+    }
+
+    @Exclude
+
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> hashMapUsuario = new HashMap<>();
+
+        hashMapUsuario.put("id", getId());
+        hashMapUsuario.put("email", getNome());
+        hashMapUsuario.put("senha", getSenha());
+        hashMapUsuario.put("nome", getNome());
+        hashMapUsuario.put("sobrenome", getSobrenome());
+        hashMapUsuario.put("aniversario", getAniversario());
+        hashMapUsuario.put("sexo", getSexo());
+        return hashMapUsuario;
+    }
     public String getId() {
         return id;
     }

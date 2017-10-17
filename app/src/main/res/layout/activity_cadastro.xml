@@ -34,7 +34,7 @@
             <EditText
                 android:id="@+id/editCadSobrenome"
                 android:layout_width="match_parent"
-                android:hint="emaSobrenomeil"
+                android:hint="Sobrenome"
                 android:layout_height="wrap_content"
                 android:inputType="textCapCharacters"/>
 

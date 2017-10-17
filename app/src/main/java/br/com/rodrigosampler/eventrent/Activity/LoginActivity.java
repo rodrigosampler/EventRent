@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,31 +22,42 @@ import br.com.rodrigosampler.eventrent.R;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editEmail;
-    private EditText editsenha;
+    private EditText editSenha;
+    private TextView tvAbreCadastro;
     private Button btnLogar;
     private FirebaseAuth autenticacao;
     private Usuarios usuarios;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         editEmail = (EditText) findViewById(R.id.editEmail);
-        editsenha = (EditText) findViewById(R.id.editSenha);
+        editSenha = (EditText) findViewById(R.id.editSenha);
+        tvAbreCadastro = (TextView) findViewById(R.id.tvAbreCadastro);
         btnLogar = (Button) findViewById(R.id.btnLogar);
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!editEmail.getText().toString().equals("") && !editsenha.getText().toString().equals("")){
+                if(!editEmail.getText().toString().equals("") && !editSenha.getText().toString().equals("")){
                     usuarios = new Usuarios();
                     usuarios.setEmail(editEmail.getText().toString());
-                    usuarios.setSenha(editsenha.getText().toString());
+                    usuarios.setSenha(editSenha.getText().toString());
 
                     validarLogin();
                 }else{
                     Toast.makeText(LoginActivity.this, "preencha os campos de e-mail e senha!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        tvAbreCadastro.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                abreCadastroUsuario();
             }
         });
     }
@@ -68,7 +80,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void abrirTelaPrincipal(){
-        Intent intenAbrirTelaPrincipal = new Intent(LoginActivity.this, PrincipalActivity.class);
-        startActivity(intenAbrirTelaPrincipal);
+        Intent intentAbrirTelaPrincipal = new Intent(LoginActivity.this, PrincipalActivity.class);
+        startActivity(intentAbrirTelaPrincipal);
+    }
+
+    public void abreCadastroUsuario(){
+        Intent intentAbrirCadastro = new Intent(LoginActivity.this, CadastroActivity.class);
+        startActivity(intentAbrirCadastro);
     }
 }

@@ -23,7 +23,7 @@ public class Preferencias {
         editor = preferences.edit();
     }
 
-    public void salvarUsuario(String identificadorUsuario, String nomeUsuario){
+    public void salvarUsuarioPreferencias(String identificadorUsuario, String nomeUsuario){
         editor.putString(CHAVE_IDENTIFICADOR, identificadorUsuario);
         editor.putString(CHAVE_NOME, nomeUsuario);
         editor.commit();
