@@ -35,7 +35,7 @@
             android:theme="@style/MyEditTextTheme"/>
 
         <Button
-            android:id="@+id/btnLogar"
+            android:id="@+id/btnAvancar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/avancar"/>

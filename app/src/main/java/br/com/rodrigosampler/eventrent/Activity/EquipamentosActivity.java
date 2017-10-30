@@ -8,7 +8,7 @@ import android.widget.ListView;
 
 import br.com.rodrigosampler.eventrent.R;
 
-public class EquipamentosActivity extends Activity {
+public class EquipamentosActivity extends AppCompatActivity {
 
     private ListView listaItems;
     private String[] itens = {
