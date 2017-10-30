@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorBack"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="br.com.rodrigosampler.eventrent.Activity.DataActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorBack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="br.com.rodrigosampler.eventrent.Activity.DataActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editData"
+            android:inputType="textEmailAddress"
+            android:hint="@string/data_locacao"
+            android:textColorHint="@color/colorLetra"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/colorLetra"
+            android:theme="@style/MyEditTextTheme"/>
+
+        <Button
+            android:id="@+id/btnLogar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/avancar"/>
+
+    </LinearLayout>
+</LinearLayout>

@@ -8,11 +8,8 @@
     android:orientation="vertical"
     tools:context="br.com.rodrigosampler.eventrent.Activity.PrincipalActivity">
 
-    <TextView
+    <ListView
+        android:id="@+id/listaempresas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TELA PRINCIPAL"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:gravity="center"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

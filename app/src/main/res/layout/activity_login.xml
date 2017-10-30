@@ -1,44 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="16dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:layout_marginTop="16dp"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context="br.com.rodrigosampler.eventrent.Activity.LoginActivity">
-    
-    <EditText
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorBack"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editEmail"
-        android:inputType="textEmailAddress"
-        android:hint="E-MAIL"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editSenha"
-        android:inputType="textPassword"
-        android:hint="SENHA"/>
-
-    <Button
-        android:id="@+id/btnLogar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="logar"/>
-
-    <TextView
-        android:id="@+id/tvAbreCadastro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Não tem cadastro? Clique Aqui"
-        android:textSize="15sp"
-        />
+        android:orientation="vertical"
+        tools:context="br.com.rodrigosampler.eventrent.Activity.LoginActivity">
 
+   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorBack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="br.com.rodrigosampler.eventrent.Activity.LoginActivity">
+
+       <ImageView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="30dp"
+           android:layout_marginTop="10dp"
+           android:src="@mipmap/lgevt" />
+
+       <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editEmail"
+            android:inputType="textEmailAddress"
+            android:hint="@string/e_mail"
+            android:textColorHint="@color/colorLetra"
+            android:textColor="@color/colorLetra"
+            android:theme="@style/MyEditTextTheme"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editSenha"
+            android:inputType="textPassword"
+            android:hint="@string/senha"
+            android:textColor="@color/colorLetra"
+            android:textColorHint="@color/colorLetra"
+            android:theme="@style/MyEditTextTheme"/>
+
+        <Button
+            android:id="@+id/btnLogar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/logar"/>
+
+        <TextView
+            android:id="@+id/tvAbreCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/n_o_tem_cadastro_clique_aqui"
+            android:textSize="15sp"
+            android:textColor="@color/colorLetra"
+            />
+
+    </LinearLayout>
 </LinearLayout>
