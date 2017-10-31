@@ -114,13 +114,13 @@ public class InicioActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_orcamento) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_compras) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_perfil) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_sair) {
 
         } else if (id == R.id.nav_share) {
 
