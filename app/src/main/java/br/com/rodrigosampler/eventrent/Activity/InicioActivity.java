@@ -17,6 +17,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import br.com.rodrigosampler.eventrent.DAO.ConfiguracaoFirebase;
 import br.com.rodrigosampler.eventrent.R;
 
 public class InicioActivity extends AppCompatActivity
@@ -27,6 +30,7 @@ public class InicioActivity extends AppCompatActivity
             "SmartLuz", "NewLight", "Staff Soluções",
             "RCE Eventos"
     };
+    private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +125,10 @@ public class InicioActivity extends AppCompatActivity
         } else if (id == R.id.nav_perfil) {
 
         } else if (id == R.id.nav_sair) {
-
+            autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
+            autenticacao.signOut();
+            Intent intentSair = new Intent(InicioActivity.this, LoginActivity.class);
+            startActivity(intentSair);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
