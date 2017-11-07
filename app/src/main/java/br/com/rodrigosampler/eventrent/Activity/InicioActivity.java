@@ -123,12 +123,14 @@ public class InicioActivity extends AppCompatActivity
         } else if (id == R.id.nav_compras) {
 
         } else if (id == R.id.nav_perfil) {
-
+            Intent intentPerfil = new Intent(InicioActivity.this, PerfilActivity.class);
+            startActivity(intentPerfil);
         } else if (id == R.id.nav_sair) {
             autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
             autenticacao.signOut();
             Intent intentSair = new Intent(InicioActivity.this, LoginActivity.class);
             startActivity(intentSair);
+            finish();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
