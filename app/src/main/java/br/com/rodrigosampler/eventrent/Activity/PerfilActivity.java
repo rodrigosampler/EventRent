@@ -52,11 +52,11 @@ public class PerfilActivity extends AppCompatActivity
 
         TextViewPerfil = (TextView) findViewById(R.id.textViewPerfil);
 
-        buscarDadosPerfil();
+
     }
 
     private void buscarDadosPerfil() {
-        instanciaFireBase = ConfiguracaoFirebase.getFirebase();
+
     }
 
     @Override
