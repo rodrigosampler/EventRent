@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import br.com.rodrigosampler.eventrent.DAO.ConfiguracaoFirebase;
 import br.com.rodrigosampler.eventrent.R;
@@ -31,6 +38,9 @@ public class InicioActivity extends AppCompatActivity
             "RCE Eventos"
     };
     private FirebaseAuth autenticacao;
+    private FirebaseUser usuario;
+    private DatabaseReference databaseReferencia =  ConfiguracaoFirebase.getFirebase();
+    private DatabaseReference empresasReferencia = databaseReferencia.child("empresas").child("001");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,21 @@ public class InicioActivity extends AppCompatActivity
         setContentView(R.layout.activity_inicio);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        verificaUsuarioLogado();
+        empresasReferencia.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i("FIREBASE", dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("FIREBASE", "Failed to read value.", databaseError.toException());
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -140,5 +165,14 @@ public class InicioActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void verificaUsuarioLogado(){
+        autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
+        if(autenticacao.getCurrentUser() != null){
+            Log.i("USUARIO", "USUARIO LOGADO");
+        }else{
+            Log.i("USUARIO", "USUARIO NÃO LOGADO");
+        }
     }
 }
